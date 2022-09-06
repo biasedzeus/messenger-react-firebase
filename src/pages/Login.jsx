@@ -3,7 +3,7 @@ import {HiOutlineUpload} from 'react-icons/hi'
 
 const Login = () => {
   return (
-    <div className="form-container">
+    <div style={{backgroundColor:'gray'}}className="form-container">
       <div className="form-wrapper">
         <span className="logo">Messenger</span>
         <span className="title">Log In</span>
