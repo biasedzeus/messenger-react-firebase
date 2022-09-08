@@ -1,6 +1,28 @@
-$backgroundColor: wheat;
+$backgroundColor: #005f73;
+$buttonColor:#005f73;
 $inputColor: black;
 $logoColor: "red";
+$bigLogoColor:#0a9396;
+
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+    
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+    
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+    
+  }
+}
+
 
 * {
   margin: 0;
@@ -102,9 +124,24 @@ $logoColor: "red";
     height: 100%;
     border-radius: 10px;
 
+    @include mobile{
+      width: 100%;
+    }
+    @include tablet(){
+      width: 90%;
+    }
+
     .sidebar {
       background-color: #0575e6;
       flex: 1;
+      
+
+      @include mobile{
+        display: none;
+      }
+      @include tablet{
+        position: relative;
+      }
 
       .navbar {
         background-color: #404040;
@@ -137,6 +174,9 @@ $logoColor: "red";
             border: none;
             padding: 0.2rem 0.4rem;
             border-radius: 0.2rem;
+            position: absolute;
+            bottom: 10px;
+            left: 1rem;
           }
         }
       }
