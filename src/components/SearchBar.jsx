@@ -1,7 +1,7 @@
 import React,{useContext, useState} from 'react';
 import avatar from '../assets/man.png';
 import {db} from '../firebase'
-import { collection, getDoc, query, serverTimestamp, setDoc, updateDoc, where,doc } from 'firebase/firestore'
+import { collection, getDoc,getDocs, query, serverTimestamp, setDoc, updateDoc, where,doc } from 'firebase/firestore'
 import {AuthContext} from "../context/AuthContext"
 
 const SearchBar = () => {

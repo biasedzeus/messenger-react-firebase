@@ -40,7 +40,7 @@ const Register = () => {
       const storageRef = ref(storage, name);
 
       const uploadTask = uploadBytesResumable(storageRef, selectedFile);
-      const toastId = toast.loading("uploading", {
+      const toastId = toast.loading("registering", {
         duration: 4000,
         position: "bottom-center",
       });
@@ -83,10 +83,11 @@ const Register = () => {
               photoURL: downloadURL,
             });
 
-            await setDoc(doc(db, "userChatss", response.user.uid), {});
-            toast.success("upload completed", { id: toastId });
+            await setDoc(doc(db, "userChats", response.user.uid), {});
+            toast.success("Registered & loggedIn Successfully.", { id: toastId });
           });
           navigate("/");
+          // toast.dismiss();
         }
       );
     } catch (error) {
