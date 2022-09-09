@@ -220,13 +220,16 @@ $messagebgColor: #00adb5;
 
         .searchbar-form {
           padding: 10px;
-
+         
+        
           input {
             background-color: transparent;
             border: none;
             border-bottom: 1px solid #404040;
             color: white;
             padding: 1rem;
+            outline: none;
+            border:none;
 
             &::placeholder {
               color: white;
@@ -573,6 +576,18 @@ $messagebgColor: #00adb5;
   width: 50px;
   border-radius: 50%;
 }
+.searchbar-form{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+
+}
+.search-btn{
+  padding: .5rem;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+}
 
 @include mobile(){
   .userchat{
@@ -592,6 +607,13 @@ $messagebgColor: #00adb5;
           height: 50px !important;
           border-radius: 50%;
         }
+  }
+
+  .searchbar-form{
+    input{
+      width: 80%;
+      justify-content: space-evenly;
+    }
   }
  
 }

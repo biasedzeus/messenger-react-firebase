@@ -13,6 +13,8 @@ import {
   doc,
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
+import {AiOutlineSearch} from 'react-icons/ai';
+import toast from 'react-hot-toast';
 
 const SearchBar = () => {
   const [userName, setUserName] = useState(null);
@@ -78,6 +80,17 @@ const SearchBar = () => {
     setUserName("");
   };
 
+  const handleSearchButton = () =>{
+    if(!userName) return toast.error("enter a name before searching",{
+      duration:4000,
+      position: "top-center",
+    });
+
+    getSearchedUser();
+
+
+  }
+
   return (
     <div className="searchbar">
       <div className="searchbar-form">
@@ -88,6 +101,9 @@ const SearchBar = () => {
           onChange={(e) => setUserName(e.target.value)}
           onKeyDown={handleKeyDown}
         />
+        <button onClick={handleSearchButton} className="search-btn">
+          <AiOutlineSearch/>
+        </button>
       </div>
       {error && "something went wrong"}
       {searchedUser && (
