@@ -6,10 +6,13 @@ import { ChatContext } from "../context/ChatContext";
 import Messages from "./Messages";
 import MsgInput from './MsgInput'
 import {TiThMenu} from "react-icons/ti";
+import toast from 'react-hot-toast';
 
 const ChatFeed = ({handleMenuToggle}) => {
   
-
+  const handleComingSoon = () =>{
+    toast.success("Coming Soon...")
+  }
   const {data} = useContext(ChatContext);
   console.log("data",data)
   return (
@@ -23,9 +26,9 @@ const ChatFeed = ({handleMenuToggle}) => {
         <span>{data.user?.displayName}</span>
 
         <div className="chat-icons">
-        <AiFillVideoCamera />
-        <FaUserPlus />
-        <FiMoreHorizontal />
+        <AiFillVideoCamera onClick={handleComingSoon} />
+        <FaUserPlus onClick={handleComingSoon}/>
+        <FiMoreHorizontal onClick={handleComingSoon}/>
         </div>
 
       </div>

@@ -7,12 +7,16 @@ import { AuthContext } from "../context/AuthContext";
 
 const NavBar = () => {
   const {currentUser} = useContext(AuthContext);
+   
+  const handleComingSoon = () =>{
+    toast.success("Coming Soon...")
+  }
 
   return (
     <nav className="navbar">
       <span className="logo">Messenger</span>
       <div className="user">
-        <img src={currentUser?.photoURL} alt="" />
+        <img src={currentUser?.photoURL} alt="" onClick={handleComingSoon}/>
         <span>{currentUser?.displayName}</span>
         <button
           onClick={() => {
