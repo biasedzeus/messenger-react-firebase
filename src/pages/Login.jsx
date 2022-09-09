@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "gray" }} className="form-container">
+    <div  className="form-container login">
       <div className="form-wrapper">
         <span className="logo">Messenger</span>
         <span className="title">Log In</span>

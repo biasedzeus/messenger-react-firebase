@@ -1,37 +1,57 @@
-$backgroundColor: #005f73;
-$buttonColor:#005f73;
+$backgroundColor: #353535;
+$buttonColor: #005f73;
 $inputColor: black;
 $logoColor: "red";
-$bigLogoColor:#0a9396;
+$bigLogoColor: #0a9396;
+$messagesBgColor: #eeee;
+$sideBarBgColor: #264653;
+$messagebgColor: #00adb5;
 
 @mixin mobile {
   @media screen and (max-width: 480px) {
     @content;
-    
   }
 }
 @mixin tablet {
   @media screen and (max-width: 768px) {
     @content;
-    
   }
 }
 @mixin laptop {
   @media screen and (max-width: 1200px) {
     @content;
-    
   }
 }
-
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  // color: rgba(255, 255, 255, 0.87);
+  // background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // -webkit-text-size-adjust: 100%;
+}
 
 .form-container {
-  background-color: $backgroundColor;
+  background: #085078; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #85d8ce,
+    #085078
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #85d8ce,
+    #085078
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   height: 100vh;
   display: flex;
@@ -48,13 +68,15 @@ $bigLogoColor:#0a9396;
     align-items: center;
 
     .logo {
-      color: $logoColor;
+      color: black;
       font-weight: 900;
       font-size: 2rem;
+      font-family: "Lobster", cursive;
+      // font-family: "Open Sans", sans-serif;
     }
 
     .title {
-      color: $logoColor;
+      // color: #0000;
       font-weight: normal;
     }
 
@@ -76,6 +98,7 @@ $bigLogoColor:#0a9396;
         border: none;
         padding: 1rem;
         background-color: $backgroundColor;
+        background-color: #284b63;
 
         border-radius: 0.4rem;
         color: white;
@@ -87,20 +110,23 @@ $bigLogoColor:#0a9396;
         align-items: center;
         justify-content: space-evenly;
         cursor: pointer;
+        padding: 1rem;
       }
       label:hover {
         color: white;
         background-color: #404040;
-        padding: 1rem;
-        transform: scale(0.9);
         border-radius: 0.5rem;
         transition: 200ms ease-out;
       }
     }
     p {
-      color: #0575e6;
+      color: #202020;
       font-size: 0.85rem;
       margin-top: 0.85rem;
+
+      a {
+        text-decoration: none;
+      }
     }
     span {
       font-weight: 900;
@@ -118,34 +144,42 @@ $bigLogoColor:#0a9396;
   .container {
     border: 1px solid black;
     display: flex;
-    // gap: 1rem;
     width: 75%;
-    // max-width: 65%;
     height: 100%;
     border-radius: 10px;
 
-    @include mobile{
-      width: 100%;
+    @include mobile {
+      width: 100% !important;
     }
-    @include tablet(){
+    @include tablet() {
       width: 90%;
     }
 
     .sidebar {
-      background-color: #0575e6;
+      background-color: $sideBarBgColor;
       flex: 1;
-      
+      position: relative;
 
-      @include mobile{
+      @include mobile {
         display: none;
       }
-      @include tablet{
+      @include tablet {
         position: relative;
+      }
+
+      .sidebar-mobile {
+        display: none;
+        width: 40%;
+
+        @include mobile {
+          display: block;
+          background-color: red;
+        }
       }
 
       .navbar {
         background-color: #404040;
-        padding: 0.6rem;
+        padding: 1rem;
         // max-height: 1rem;
         display: flex;
         align-items: center;
@@ -153,6 +187,7 @@ $bigLogoColor:#0a9396;
         color: white;
         .logo {
           font-weight: bold;
+          font-family: "Lobster", cursive;
         }
 
         .user {
@@ -172,11 +207,11 @@ $bigLogoColor:#0a9396;
             color: white;
             background-color: $backgroundColor;
             border: none;
-            padding: 0.2rem 0.4rem;
+            padding: 0.8rem 2.6rem;
             border-radius: 0.2rem;
             position: absolute;
             bottom: 10px;
-            left: 1rem;
+            left: 3rem;
           }
         }
       }
@@ -255,9 +290,10 @@ $bigLogoColor:#0a9396;
     }
     .chatfeed {
       flex: 3;
+      position: relative;
       // background-color: red;
       // overflow: hidden;
-      overflow-y: auto;
+      // overflow-y: auto;
       /* width */
       &::-webkit-scrollbar {
         width: 10px;
@@ -284,6 +320,18 @@ $bigLogoColor:#0a9396;
         position: sticky;
         top: 0;
 
+        .xs-menu-sidebar-btn {
+          background: none;
+          outline: none;
+          border: none;
+          font-size: 1.2rem;
+          display: none;
+
+          @include mobile {
+            display: block;
+          }
+        }
+
         span {
           font-size: 1.2rem;
         }
@@ -296,10 +344,25 @@ $bigLogoColor:#0a9396;
       }
 
       .messages {
-        background-color: greenyellow;
+        background-color: $messagesBgColor;
         padding: 1rem;
-        min-height: 70%;
-        // overflow-y: scroll;
+        height: calc(100vh - 67px);
+        overflow: scroll;
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey;
+          border-radius: 10px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: lightgray;
+          border-radius: 10px;
+        }
 
         .message {
           display: flex;
@@ -307,6 +370,10 @@ $bigLogoColor:#0a9396;
           margin-bottom: 20px;
 
           .messageInfo {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
             img {
               width: 40px;
               height: 40px;
@@ -333,17 +400,16 @@ $bigLogoColor:#0a9396;
             }
           }
 
-          &.owner{
+          &.owner {
             flex-direction: row-reverse;
-           
-          .messageContent{
-                  align-items: flex-end;
-            p{
-              background-color: #0575e6;
-              color: white;
+
+            .messageContent {
+              align-items: flex-end;
+              p {
+                background-color: $messagebgColor;
+                color: white;
+              }
             }
-          }
-          
           }
         }
       }
@@ -355,9 +421,10 @@ $bigLogoColor:#0a9396;
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        // width: 80%;
-        position: sticky;
-        bottom: 0 !important;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        border-radius: 0px 0px 5px 0px;
 
         color: black;
 
@@ -404,19 +471,138 @@ $bigLogoColor:#0a9396;
     }
   }
 }
+.drawer {
+  display:none;
+  height: 100vh;
+  background-color: $sideBarBgColor ;
+  position: relative;
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  color: rgba(255, 255, 255, 0.87);
-  // background-color: #242424;
+  
+  @include mobile(){
+    display: block;
+  }
+  .sidebar {
+    background-color: $sideBarBgColor;
+    flex: 1;
+    @include mobile {
+      // display: none;
+    }
+   
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  // -webkit-text-size-adjust: 100%;
+    .navbar {
+      background-color: #404040;
+      padding: 1rem;
+      // max-height: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      .logo {
+        font-weight: bold;
+        font-family: "Lobster", cursive;
+      }
+
+      .user {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        img {
+          background-color: #505050;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        button {
+          color: white;
+          background-color: $backgroundColor;
+          border: none;
+          padding: .8rem 3.4rem;
+          border-radius: 0.2rem;
+          position: absolute;
+          bottom: 1rem;
+          left: 3rem;
+        }
+      }
+    }
+    .searchbar {
+      border-bottom: 1px solid gray;
+
+      .searchbar-form {
+        padding: 10px;
+
+        input {
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid #404040;
+          color: white;
+          padding: 1rem;
+
+          &::placeholder {
+            color: white;
+          }
+        }
+      }
+
+      .userchat {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        gap: 1rem;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #505050;
+          transition: 100ms ease-in-out;
+        }
+        img {
+          width: 50px !important;
+          height: 50px !important;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
 
+.userchatImage{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+@include mobile(){
+  .userchat{
+    display: flex;
+        align-items: center;
+        padding: 10px;
+        gap: 1rem;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #505050;
+          transition: 100ms ease-in-out;
+        }
+        img {
+          width: 50px !important;
+          height: 50px !important;
+          border-radius: 50%;
+        }
+  }
+ 
+}
+.logo{
+  will-change: filter;
+
+}
+
+.logo:hover{
+  filter: drop-shadow(0 0 1em #ffff);
+}
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;

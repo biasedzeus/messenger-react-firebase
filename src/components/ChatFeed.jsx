@@ -5,8 +5,10 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { ChatContext } from "../context/ChatContext";
 import Messages from "./Messages";
 import MsgInput from './MsgInput'
+import {TiThMenu} from "react-icons/ti";
 
-const ChatFeed = () => {
+const ChatFeed = ({handleMenuToggle}) => {
+  
 
   const {data} = useContext(ChatContext);
   console.log("data",data)
@@ -14,6 +16,9 @@ const ChatFeed = () => {
     <div className="chatfeed">
 
       <div className="chatInfo">
+        <button className="xs-menu-sidebar-btn"
+        onClick={handleMenuToggle}
+        ><TiThMenu/></button>
 
         <span>{data.user?.displayName}</span>
 

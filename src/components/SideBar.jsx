@@ -3,12 +3,12 @@ import NavBar from './NavBar';
 import SearchBar from './SearchBar';
 import Chats from "./Chats"
 
-const SideBar = () => {
+const SideBar = ({closeDrawer}) => {
   return (
-    <div className='sidebar'>
+    <div className="sidebar">
         <NavBar/>
         <SearchBar/>
-        <Chats/>
+        <Chats closeDrawer={closeDrawer}/>
     </div>
   )
 }
