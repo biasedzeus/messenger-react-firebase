@@ -1,10 +1,8 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebase";
-import toast from 'react-hot-toast';
-
-
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,30 +10,28 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const loginToast = toast.loading('Please Wait',{
-      duration:4000,
+    const loginToast = toast.loading("Please Wait", {
+      duration: 4000,
       position: "bottom-center",
-    })
+    });
     try {
-      await signInWithEmailAndPassword(auth,email,password);
-      toast.success('logged In',{
-        id:loginToast
-      })
-      navigate("/")    
-
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("logged In", {
+        id: loginToast,
+      });
+      navigate("/");
     } catch (error) {
-      console.log("erro2", error);
+      // console.log("erro2", error);
       setError(error.message);
       toast.error(error.message);
     }
   };
 
   return (
-    <div  className="form-container login">
+    <div className="form-container login">
       <div className="form-wrapper">
         <span className="logo">Messenger</span>
         <span className="title">Log In</span>
@@ -49,12 +45,12 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input 
-            type="password" 
+          <input
+            type="password"
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            />
+          />
 
           <button onClick={handleSubmit}>Log In</button>
         </form>

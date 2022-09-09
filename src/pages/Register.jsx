@@ -51,26 +51,26 @@ const Register = () => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          // console.log("Upload is " + progress + "% done");
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
+              // console.log("Upload is paused");
               break;
             case "running":
-              console.log("Upload is running");
+              // console.log("Upload is running");
               break;
           }
         },
         (error) => {
           // Handle unsuccessful uploads
-          console.log(error);
+          // console.log(error);
           setError(error);
         },
         () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log("File available at", downloadURL);
+            // console.log("File available at", downloadURL);
             await updateProfile(response.user, {
               displayName: name,
               photoURL: downloadURL,
@@ -84,14 +84,16 @@ const Register = () => {
             });
 
             await setDoc(doc(db, "userChats", response.user.uid), {});
-            toast.success("Registered & loggedIn Successfully.", { id: toastId });
+            toast.success("Registered & loggedIn Successfully.", {
+              id: toastId,
+            });
           });
           navigate("/");
           // toast.dismiss();
         }
       );
     } catch (error) {
-      console.log("erro2", error);
+      // console.log("erro2", error);
       setError(error.message);
       toast.error(error.message);
     }

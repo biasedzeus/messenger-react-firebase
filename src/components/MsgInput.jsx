@@ -25,7 +25,7 @@ const MsgInput = () => {
 
   const handleSendMsg = async () => {
     if (image) {
-      console.log(image);
+      // console.log(image);
       const storageRef = ref(storage, image.name);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
@@ -53,7 +53,6 @@ const MsgInput = () => {
         }
       );
 
-     
       setText("");
       setImage(null);
     } else {
@@ -82,16 +81,12 @@ const MsgInput = () => {
     }
   };
 
-  const handleKeyDown = (e) =>{
-        if(e.code === 'Enter'){
-          console.log("enter pressed")
-          handleSendMsg();
-        }
-          
-  }
-
-
-
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      // console.log("enter pressed")
+      handleSendMsg();
+    }
+  };
 
   return (
     <div className="msgInput">
@@ -100,7 +95,7 @@ const MsgInput = () => {
         placeholder="type message...."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyDown={(e) =>handleKeyDown(e)} 
+        onKeyDown={(e) => handleKeyDown(e)}
       />
 
       <div className="send">

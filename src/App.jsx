@@ -10,7 +10,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-  console.log("App", currentUser);
+  // console.log("App", currentUser);
 
   return (
     <div>
