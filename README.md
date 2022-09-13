@@ -2,6 +2,12 @@
 
 [Visit Website here...](https://messenger-firebase.netlify.app/login)
 
+## Features
+- Register User with an avatar.
+- Login a user using Firebase.
+- Search other resgitered users.
+- Chat with the selected user.
+
 ## Technologies used:
 
 - React JS
